@@ -13,14 +13,13 @@ public class arrowCylinder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        height = 0.14f;
-        radius = 0.14f;
+       
 
-        for (int i = 0; i < 360; i += 30) //This is phi (360 degrees)
+        for (int i = 0; i < 360; i += 36) //This is phi (360 degrees)
         {
-            for (int j = 0; j < 2*height*100; j += 2) //This goes down the side (s=constant)
+            for (int j = 0; j < 2*height*100; j += 20) //This goes down the side (s=constant)
             {
-                for (int k = 0; k < radius * 100; k += 2) //This goes across the top (z=constant)
+                for (int k = 0; k < radius * 100; k += 5) //This goes across the top (z=constant)
                 {
                     //Create the arrows, three layers
                     var arrow = Instantiate<GameObject>(arrowPrefab, parentT);
@@ -28,8 +27,8 @@ public class arrowCylinder : MonoBehaviour
                     var arrow3 = Instantiate<GameObject>(arrowPrefab, parentT);
 
                     //Define the direction of each arrow in this nested loop
-                    Vector3 arrowDirTop = new Vector3(0.001f * k * Mathf.Cos(i * Mathf.Deg2Rad), 0.001f * k * Mathf.Sin(i * Mathf.Deg2Rad), height);
-                    Vector3 arrowDirSide = new Vector3(1.01f * radius, 1.01f * radius, height - 0.001f * j);
+                    Vector3 arrowDirTop = new Vector3(0.01f * k * Mathf.Cos(i * Mathf.Deg2Rad), height*(1.2f), 0.01f * k * Mathf.Sin(i * Mathf.Deg2Rad));
+                    Vector3 arrowDirSide = new Vector3(radius, 0, radius);
 
                     //Translate defines how far they are from the center of the parent object (the sphere)
                     arrow.transform.Translate(0.2f * arrowDirTop);
